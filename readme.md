@@ -24,11 +24,11 @@ Note, this is an early beta release. Currently, the plugin will import the follo
 * Phone (mobile)
 * Email
 
-We've included an easy to use field mapping interface to allow you to map your contact form fields with Nimble fields. Once you map fields, you must use the same form field tags throughout your forms to make sure information is being imported. For example, if you use `[first-name]` tag and that�s what you used to map it to Nimble field, all forms must use `[first-name]` to import lead�s first name.
+We've included an easy to use field mapping interface to allow you to map your contact form fields with Nimble fields. Once you map fields, you must use the same form field tags throughout your forms to make sure information is being imported. For example, if you use `[first-name]` tag and that's what you used to map it to Nimble field, all forms must use `[first-name]` to import lead's first name.
 
 **Usage Tip:** When your form submissions are emailed to the email connected with your Nimble, you will be able to view emails in the stream of the newly created lead. Any additional fields that were not imported, will be available in your email.
 
-**IMPORTANT:** This plugin requires Nimble app to be created to sync your WordPress with Nimble. Don�t worry, it�s a quick setup process, free and video tutorial includes everything you need to know and how to do it.
+**IMPORTANT:** This plugin requires Nimble app to be created to sync your WordPress with Nimble. Don't worry, it's a quick setup process, free and video tutorial includes everything you need to know and how to do it.
 
 ## To-do List
 
