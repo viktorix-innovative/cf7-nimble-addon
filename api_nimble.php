@@ -133,7 +133,7 @@ else if (( get_option('CHKN_phone_mobile') =='on'	) )
       
     }
 }
-public function nimble_createnote($contact_id,$access_token){  $url    = 'https://api.nimble.com/api/v1/activities/task?access_token=' . $access_token;  $method = 'POST';  $data_fields = '["51534203e28cf71a9475a235", "515341cae28cf71a9475a1eb"]';  $data = '{"contact_ids": '.$data_fields.' ,"note": "this is my note added through nimble api", "note_preview": "Just contact note" }';     $data2 = '{"subject": "Hello task! 2423056"}';  $response_data = $this->nimble_request($url, $method, $data2); print_r($data2);  print_r($response_data);}
+
 
 public function nimble_request($url, $method, $data)
 {   

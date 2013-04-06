@@ -35,53 +35,8 @@ function nimble_add_pages()
 	 add_submenu_page( 'nimble', 'Mapping Fields', 'Mapping Fields', 'manage_options', 'mapping-fields', 'nimble_mapping_fields');
 }
 
-
-
-
 function nimble_mapping_fields() 
-{	        $data = json_encode(array(
-            "fields" => array(
-                'first name' => array(
-                    array(
-                        'value' => 'firstname',
-                        'modifier' => ''
-                    )
-                ),
-                'last name' => array(
-                    array(
-                        'value' => 'lastname',
-                        'modifier' => ''
-                    )
-                ),
-                'title' => array(
-                    array(
-                        'value' => 'title',
-                        'modifier' => ''
-                    )
-                ),
-				
-                'phone' => array(
-                    array(
-                        'value' => '334343433',
-                        'modifier' => 'work'
-                    ),
-		    array(
-                        'value' => '121212112',
-                        'modifier' => 'mobile'
-                    )
-                ),				
-                'email' => array(
-                    array(
-                        'value' => 'emailaddress',
-                        'modifier' => 'personal'
-                    )
-                )
-            ),
-            "type" => 'person'
-        ));
-
-	
-	
+{	       
 	include('nimble_map_fields.php'); 
 }
 
@@ -96,15 +51,9 @@ function nimble_main_admin()
 
 function contact7_nimble($cfdata)
 {
-
-
 $formtitle = $cfdata->title;
-
-
 $formdata = $cfdata->posted_data;
-
  require_once('api_nimble.php');
-
  $nimble = new NimbleAPI();
 
 try {
@@ -129,72 +78,4 @@ try {
 }
 
  add_action('wpcf7_mail_sent', 'contact7_nimble', 1);
-
- 
- /**
-* PressTrends Plugin API
-*/
-function presstrends_plugin() {
-
-		// PressTrends Account API Key
-		$api_key = 'ezd1mxaiad0aj2saeuj2soea9q00njro0zri';
-		$auth    = 'keovadix2ewqpkbxssqgsbjzuo4co3j7k';
-
-		// Start of Metrics
-		global $wpdb;
-		$data = get_transient( 'presstrends_cache_data' );
-		if ( !$data || $data == '' ) {
-			$api_base = 'http://api.presstrends.io/index.php/api/pluginsites/update/auth/';
-			$url      = $api_base . $auth . '/api/' . $api_key . '/';
-
-			$count_posts    = wp_count_posts();
-			$count_pages    = wp_count_posts( 'page' );
-			$comments_count = wp_count_comments();
-
-			// wp_get_theme was introduced in 3.4, for compatibility with older versions, let's do a workaround for now.
-			if ( function_exists( 'wp_get_theme' ) ) {
-				$theme_data = wp_get_theme();
-				$theme_name = urlencode( $theme_data->Name );
-			} else {
-				$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
-				$theme_name = $theme_data['Name'];
-			}
-
-			$plugin_name = '&';
-			foreach ( get_plugins() as $plugin_info ) {
-				$plugin_name .= $plugin_info['Name'] . '&';
-			}
-			// CHANGE __FILE__ PATH IF LOCATED OUTSIDE MAIN PLUGIN FILE
-			$plugin_data         = get_plugin_data( __FILE__ );
-			$posts_with_comments = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type='post' AND comment_count > 0" );
-			$data                = array(
-				'url'             => stripslashes( str_replace( array( 'http://', '/', ':' ), '', site_url() ) ),
-				'posts'           => $count_posts->publish,
-				'pages'           => $count_pages->publish,
-				'comments'        => $comments_count->total_comments,
-				'approved'        => $comments_count->approved,
-				'spam'            => $comments_count->spam,
-				'pingbacks'       => $wpdb->get_var( "SELECT COUNT(comment_ID) FROM $wpdb->comments WHERE comment_type = 'pingback'" ),
-				'post_conversion' => ( $count_posts->publish > 0 && $posts_with_comments > 0 ) ? number_format( ( $posts_with_comments / $count_posts->publish ) * 100, 0, '.', '' ) : 0,
-				'theme_version'   => $plugin_data['Version'],
-				'theme_name'      => $theme_name,
-				'site_name'       => str_replace( ' ', '', get_bloginfo( 'name' ) ),
-				'plugins'         => count( get_option( 'active_plugins' ) ),
-				'plugin'          => urlencode( $plugin_name ),
-				'wpversion'       => get_bloginfo( 'version' ),
-			);
-
-			foreach ( $data as $k => $v ) {
-				$url .= $k . '/' . $v . '/';
-			}
-			wp_remote_get( $url );
-			set_transient( 'presstrends_cache_data', $data, 60 * 60 * 24 );
-		}
-	}
-
-	$CHKN_support = get_option('CHKN_support');
-	if ($CHKN_support=='on') {
-// PressTrends WordPress Action
-add_action('admin_init', 'presstrends_plugin');
-}
 ?>

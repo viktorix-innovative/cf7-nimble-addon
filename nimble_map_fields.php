@@ -120,13 +120,7 @@ if ($is_active == '1') {
 				
 		</tbody>
 </table>
-
-<br />
-<h4> Help Support Plugin Development Without a Hassle  </h4>
-<p> You can easily help us with plugin development by allowing us to track annonymous plugin usage statistics from your website.  </p>
-<p><div class="alert alert-info" style="display: inline-block;">Yes, I would like to support further development [&nbsp;<input type="checkbox" name="CHKN_support" <?php if ($CHKN_support=='on') {echo 'checked="checked"';} ?>  />&nbsp;] (check to enable tracking) </div></p>
-<p>We DO NOT track any sensitive/personal information. Plugin analytics are provided by PressTrends.io, please visit their <a href="http://www.presstrends.io/privacy/" target="_blank">Privacy page</a> for additional information. </p>
-		
+
 		  <input type="hidden" name="bcpl_hidden" value="Y" />
         <p class="submit">  
         <input type="submit" class="btn btn-primary" name="Submit" value="<?php _e('Save Changes', 'bcpl_trdom' ) ?>" />  
@@ -142,4 +136,4 @@ if ($is_active == '1') {
 	<a href="http://viktorixinnovative.com/track/rate-cf7-nimble" class="btn btn-info" target="_blank">Rate & Review</a>
 	<a href="http://viktorixinnovative.com/track/donate-cf7-nimble" class="btn btn-success" target="_blank">Donate</a>
 	
-	</div>
+	</div>
